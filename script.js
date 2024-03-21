@@ -1,20 +1,16 @@
 const search = document.getElementById('Search-btn');
 
-
 const getWeather = () =>{
-    const API_KEY = 'b4501361d7f91d82669b79cf8b607b3f';
+    const API_KEY = 'b4501361d7f91d82669b79cf8b607b3f'; // Replace this with your API key
 const city = document.getElementById('city').value;
 
 if (!city) {
     alert("Enter a city Name");
     return;
 }
-
 const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
 
 const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`;
-
-
 
 const fetchData = async () => {
 
@@ -116,5 +112,4 @@ fetchData();
         weatherIcon.style.display = 'flex';
      }
 }
-
 search.addEventListener("click", getWeather());
