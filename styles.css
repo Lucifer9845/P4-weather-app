@@ -150,13 +150,13 @@ h2, label p{
     flex-wrap: nowrap;
     overflow-x: auto;
     margin-top: 50px;
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
 
 }
 
-#hourly-fourcast::-webkit-scrollbar{
+/* #hourly-fourcast::-webkit-scrollbar{
     display:none;
-}
+} */
 
 .hourly-item {
     flex: 0 0 auto;
