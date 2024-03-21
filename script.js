@@ -1,7 +1,7 @@
 const search = document.getElementById('Search-btn');
 
 const getWeather = () =>{
-    const API_KEY = 'b4501361d7f91d82669b79cf8b607b3f'; // Replace this with your API key
+    const API_KEY = 'ABCDE'; // Replace this with your API key
 const city = document.getElementById('city').value;
 
 if (!city) {
