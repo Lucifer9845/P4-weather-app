@@ -37,8 +37,8 @@ const fetchData = async () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
               }
-            const data = response.json();
-            // displayHourlyFourcast(data);
+            const data = await response.json();
+            displayHourlyFourcast(data.list);
         }
         catch(error){
             console.error("error fetching the hoursly fourcast", error);
@@ -49,7 +49,7 @@ const fetchData = async () => {
     
 fetchData();
 
-    function displayWeather(data){
+    async function displayWeather(data){
         const tempDivInfo = document.getElementById('temp-div');
         const weatherInfoDiv = document.getElementById('Weather-info');
         const weatherIcon = document.getElementById('weather-icon');
@@ -81,10 +81,40 @@ fetchData();
             weatherIcon.src = iconURL;
             weatherIcon.alt =  datadescription;
 
-            // showImage();
+            showImage();
         }
     }
+     async function  displayHourlyFourcast (hourlyData) {
+        const hourlyFourcastDiv = document.getElementById('hourly-fourcast');
+        const next24Hours = hourlyData.slice(0,8);
 
+        next24Hours.forEach(item => {
+
+            const dateTime = new Date(item.dt * 1000);
+            const hour = dateTime.getHours();
+            const temperature = Math.round(item.main.temp-273.15);
+          
+            const iconCode = item.weather[0].icon;
+            const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+          
+            const hourlyItemHtml = `
+              <div class="hourly-item">
+                <span>${hour}:00</span>
+                <img src="${iconUrl}" alt="Hourly Weather Icon">
+                <span>${temperature}°C</span>
+              </div>
+            `;
+            hourlyFourcastDiv.innerHTML += hourlyItemHtml;
+          
+          });
+          
+     }
+
+     function showImage(){
+        const weatherIcon = document.getElementById('weather-icon');
+
+        weatherIcon.style.display = 'flex';
+     }
 }
 
 search.addEventListener("click", getWeather());
